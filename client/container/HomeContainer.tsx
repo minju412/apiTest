@@ -15,11 +15,15 @@ const HomeContainer = () => {
         getResults({})
             .then((res) => {
                 const data = res;
+                if (res.status === 200) {
+                    setData((data.data))
+                    console.log('리스트 요청 성공 @@')
+                }
                 console.log(data);
             })
             .catch((err) => {
                 console.error(err);
-                console.error('서버연결 실패@@@@@@');
+                console.error('리스트 요청 실패 @@');
             });
     }, []);
 
@@ -29,7 +33,7 @@ const HomeContainer = () => {
             const data = res.data;
             router.push('http://localhost:3065/api/download');
             setData(data);
-            console.log(data)
+            console.log(res)
         }).catch((err) => {
             console.error(err);
         });
@@ -47,8 +51,8 @@ const HomeContainer = () => {
         uploadFile(fd)
             .then((res) => {
                 const data = res;
-                console.log(res);
-                // loading(false);
+                console.log(data);
+
             })
             .catch((err) => {
                 console.error('XXXXXXX@@@@')
